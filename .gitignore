@@ -1,0 +1,15 @@
+# Media
+*.mp4
+*.png
+*.mov
+
+# Python Files
+*.pyc
+__pychache__
+*.model
+*.h5
+
+# Formatting
+*.DS_Store
+*.mypy
+*.vscode

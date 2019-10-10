@@ -57,7 +57,7 @@ for imagePath in imagePaths:
 		image = cv2.imread(imagePath)
 		image = cv2.resize(image, (32, 32))
 	except Exception as e:
-		print ("Image %s is broken. Continue.." % imagePath.split(os.path.sep)[-1])
+		print ("Image %s is broken. Continue.." % imagePath.split(os.path.sep)[-2:])
 		continue
 
 	# update the data and labels lists, respectively

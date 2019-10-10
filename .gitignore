@@ -8,8 +8,17 @@
 __pychache__
 *.model
 *.h5
+*.ipynb_checkpoints
 
 # Formatting
 *.DS_Store
+*.DS_STORE
 *.mypy
 *.vscode
+
+# Output Files
+*.out
+*.csv
+
+# Secrets
+secrets.yaml

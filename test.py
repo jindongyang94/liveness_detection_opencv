@@ -35,7 +35,8 @@ net = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
 # load the liveness detector model and label encoder from disk
 print("[INFO] loading liveness detector...")
-model = load_model(args["model"])
+classifiermodelpath = 'models/' + args['model']
+model = load_model(classifiermodelpath)
 le = pickle.loads(open(args["le"], "rb").read())
 
 # initialize the video stream and allow the camera sensor to warmup
@@ -49,6 +50,9 @@ while True:
 	# to have a maximum width of 600 pixels
 	frame = vs.read()
 	frame = imutils.resize(frame, width=600)
+	
+	# flip the frame
+	frame = cv2.flip(frame, 1)
 
 	# grab the frame dimensions and convert it to a blob
 	(h, w) = frame.shape[:2]
@@ -121,6 +125,6 @@ cv2.destroyAllWindows()
 vs.stop()
 
 """
-python liveness_demo.py --model liveness.model --le le.pickle \
+python test.py --model vgg16_pretrained.model --le le.pickle \
 	--detector face_detector
 """

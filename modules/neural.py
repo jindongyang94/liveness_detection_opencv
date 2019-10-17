@@ -1,9 +1,12 @@
-# import the necessary packages
-from keras import backend as K
-from keras.layers.convolutional import Conv2D, MaxPooling2D, ZeroPadding2D
-from keras.layers.core import Activation, Dense, Dropout, Flatten
-from keras.layers.normalization import BatchNormalization
-from keras.models import Sequential
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+
+from tensorflow import keras
+# from keras import backend as K
+# from keras.layers.convolutional import Conv2D, MaxPooling2D, ZeroPadding2D
+# from keras.layers.core import Activation, Dense, Dropout, Flatten
+# from keras.layers.normalization import BatchNormalization
+# from keras.models import Sequential
 
 
 class Model:
@@ -22,26 +25,26 @@ class Model:
 	def build_liveness(self):
 		# initialize the model along with the input shape to be
 		# "channels last" and the channels dimension itself
-		model = Sequential()
+		model = keras.Sequential()
 
 		# first CONV => RELU => CONV => RELU => POOL layer set
-		model.add(Conv2D(16, (3, 3), padding="same",
+		model.add(keras.layers.Conv2D(16, (3, 3), padding="same",
 							input_shape=self.inputShape))
 		model.add(Activation("relu"))
-		model.add(BatchNormalization(axis=chanDim))
-		model.add(Conv2D(16, (3, 3), padding="same"))
+		model.add(BatchNormalization(axis=self.chanDim))
+		model.add(keras.layers.Conv2D(16, (3, 3), padding="same"))
 		model.add(Activation("relu"))
-		model.add(BatchNormalization(axis=chanDim))
-		model.add(MaxPooling2D(pool_size=(2, 2)))
-		model.add(Dropout(0.25))
+		model.add(BatchNormalization(axis=self.chanDim))
+		model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
+		model.add(keras.layers.Dropout(0.25))
 
 		# second CONV => RELU => CONV => RELU => POOL layer set
+		model.add(keras.layers.Conv2D(32, (3, 3), padding="same"))
+		model.add(Activation("relu"))
+		model.add(BatchNormalization(axis=self.chanDim))
 		model.add(Conv2D(32, (3, 3), padding="same"))
 		model.add(Activation("relu"))
-		model.add(BatchNormalization(axis=chanDim))
-		model.add(Conv2D(32, (3, 3), padding="same"))
-		model.add(Activation("relu"))
-		model.add(BatchNormalization(axis=chanDim))
+		model.add(BatchNormalization(axis=self.chanDim))
 		model.add(MaxPooling2D(pool_size=(2, 2)))
 		model.add(Dropout(0.25))
 

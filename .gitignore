@@ -5,7 +5,7 @@
 
 # Python Files
 *.pyc
-__pychache__
+*__pycache__*
 *.model
 *.h5
 *.ipynb_checkpoints
@@ -15,6 +15,7 @@ __pychache__
 *.DS_STORE
 *.mypy
 *.vscode
+*.pylintrc
 
 # Output Files
 *.out
